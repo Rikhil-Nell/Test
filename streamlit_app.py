@@ -1,3 +1,10 @@
 import streamlit as st
+import pandas as pd
 
-st.write("Hello")
+st.write("""
+        # Hello
+        """)
+
+data = pd.read_csv("IMDB Dataset.csv")
+
+st.data.head()
