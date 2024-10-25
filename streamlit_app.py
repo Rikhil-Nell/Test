@@ -7,4 +7,4 @@ st.write("""
 
 data = pd.read_csv("IMDB Dataset.csv")
 
-st.data.head()
+st.line_chart(data)
