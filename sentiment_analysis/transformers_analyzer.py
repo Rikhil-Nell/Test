@@ -4,17 +4,17 @@ import pandas as pd
 
 def analyze_sentiment_transformers(reviews):
     # Set device to "cpu" if CUDA (GPU) is unavailable
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Initialize tokenizer and model
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased").to('cpu')
+    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased").to(device)
 
     results = []
     for review in reviews:
         # Tokenize with truncation and padding to max length
         tokenized_review = tokenizer(review, return_tensors="pt", truncation=True, padding="max_length", max_length=512)
-        tokenized_review = {key: val.to('cpu') for key, val in tokenized_review.items()}  # Ensure tensors are on the correct device
+        tokenized_review = {key: val.to(device) for key, val in tokenized_review.items()}  # Ensure tensors are on the correct device
 
         # Get the model's output (logits)
         with torch.no_grad():

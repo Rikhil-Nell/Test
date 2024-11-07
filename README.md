@@ -1,3 +1,9 @@
+---
+title: BulkSentimentAnalysis
+app_file: app.py
+sdk: gradio
+sdk_version: 5.5.0
+---
 # Bulk Sentiment Analysis for Reviews
 
 This project provides a tool for bulk sentiment analysis of store reviews. Using various sentiment analysis models, including VADER and Hugging Face's Transformers, users can analyze reviews in CSV or Excel format to understand the overall sentiment. Results can be downloaded in CSV format, making it easy to leverage insights for decision-making.
