@@ -1,5 +1,6 @@
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import pandas as pd
 
 # Download VADER lexicon if not already available
 try:
