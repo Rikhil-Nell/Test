@@ -1,18 +1,17 @@
-import pandas as pd
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+# Download VADER lexicon if not already available
+try:
+    nltk.data.find('sentiment/vader_lexicon.zip')
+except LookupError:
+    nltk.download('vader_lexicon')
+
 def analyze_sentiment_vader(reviews):
-    
-    # Initialize the SentimentIntensityAnalyzer
     sia = SentimentIntensityAnalyzer()
-    
-    # Analyze sentiment for each review
     results = []
     for review in reviews:
         score = sia.polarity_scores(review)
         results.append(score)
-    
-    # Convert results to DataFrame
     sentiment_df = pd.DataFrame(results)
-    
     return sentiment_df
