@@ -11,7 +11,7 @@ def analyze_sentiment_transformers(reviews):
     results = []
     for review in reviews:
         # Tokenize with truncation and padding to max length
-        tokenized_review = tokenizer(review, return_tensors="pt", truncation=True, padding="max_length", max_length=512).to("cuda")
+        tokenized_review = tokenizer(review, return_tensors="pt", truncation=True, padding="max_length", max_length=512).to(device)
 
         # Get the model's output (logits)
         with torch.no_grad():
