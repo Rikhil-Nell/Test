@@ -3,7 +3,7 @@ import pandas as pd
 from sentiment_analysis.vader_analyzer import analyze_sentiment_vader
 from sentiment_analysis.transformers_analyzer import analyze_sentiment_transformers
 
-st.title("Bulk Sentiment Analysis for Store reviews")
+st.title("Bulk Sentiment Analysis for Reviews")
 
 # Step 1: File Upload
 uploaded_file = st.file_uploader("Upload your review file", type=["csv", "xlsx"])
@@ -12,10 +12,13 @@ if uploaded_file is not None:
     # Read the file into a DataFrame
     if uploaded_file.name.endswith('.csv'):
         df = pd.read_csv(uploaded_file)
-        df = df.head(500)
     else:
         df = pd.read_excel(uploaded_file)
-        df = df.head(500)
+
+    # Check the number of entries and truncate if needed
+    if len(df) > 1000:
+        df = df.head(1000)
+        st.error("The file contains more than 1,000 entries. Only the first 1,000 reviews are processed.")
 
     st.write("Data Preview:", df.head())
 
@@ -34,8 +37,8 @@ if uploaded_file is not None:
             st.write("Vader Analysis Results", df.head())
 
         if use_transformers:
-            transfromers_results = analyze_sentiment_transformers(df["review"])
-            df = pd.concat([df, transfromers_results], axis=1)
+            transformers_results = analyze_sentiment_transformers(df["review"])
+            df = pd.concat([df, transformers_results], axis=1)
             st.write("Transformers Analysis Results", df.head())
 
         # Step 4: Download Results
