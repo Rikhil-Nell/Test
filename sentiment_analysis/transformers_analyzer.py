@@ -3,8 +3,10 @@ import pandas as pd
 import torch
 def analyze_sentiment_transformers(reviews):
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased").to("cuda")
+    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased").to(device)
 
     results = []
     for review in reviews:
