@@ -89,5 +89,3 @@ The output CSV will contain the original reviews alongside new columns with sent
 Feel free to open issues or submit pull requests for improvements. All contributions are welcome!
 
 ---
-
-This README should give users a clear understanding of what the project does, how to set it up, and how to use it. Let me know if you'd like any more specific instructions or additional sections!
