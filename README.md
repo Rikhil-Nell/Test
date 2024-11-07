@@ -47,38 +47,14 @@ Once the app is running, a local link will be displayed in the terminal. Open th
 - `sentiment_analysis/vader_analyzer.py`: VADER sentiment analysis implementation.
 - `sentiment_analysis/transformers_analyzer.py`: Transformers (DistilBERT) sentiment analysis implementation.
 
-## Example
+## Future Enhancements
 
-To test the application, upload a CSV file structured like:
+- **Integrate SpaCy models** for static and contextual embedding-based sentiment analysis.
+- **Improved preprocessing** to handle non-English text and non-standard review formats.
+- **Performance optimization** with caching and batch processing for large datasets.
 
-| review                                  |
-|-----------------------------------------|
-| "The product is excellent!"             |
-| "Poor quality, very disappointed."      |
-| "It was okay, not great but not terrible." |
+## Contributing
 
-After uploading, selecting a model, and clicking "Run," a sentiment label and score will be appended to each review, which you can download.
+Feel free to open issues or submit pull requests for improvements. All contributions are welcome!
 
-## Requirements
-
-The requirements file should include:
-```plaintext
-gradio
-pandas
-torch
-transformers
-nltk
-```
-
-## Notes
-
-- Ensure that your input file contains a `review` column.
-- For the Transformers model, using a GPU is recommended to improve processing speed.
-  
-## License
-
-This project is licensed under the MIT License.
-
---- 
-
-Let me know if you need any adjustments!
+---
