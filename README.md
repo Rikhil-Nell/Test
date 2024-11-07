@@ -1,93 +1,84 @@
+Here's a revised README for your project, updated for Gradio:
+
 ---
-title: BulkSentimentAnalysis
-app_file: app.py
-sdk: gradio
-sdk_version: 5.5.0
----
+
 # Bulk Sentiment Analysis for Reviews
 
-This project provides a tool for bulk sentiment analysis of store reviews. Using various sentiment analysis models, including VADER and Hugging Face's Transformers, users can analyze reviews in CSV or Excel format to understand the overall sentiment. Results can be downloaded in CSV format, making it easy to leverage insights for decision-making.
+This project allows users to perform bulk sentiment analysis on customer reviews using two NLP models: **VADER** and **Transformers** (DistilBERT). Users can upload a CSV or Excel file with reviews and analyze the sentiment of each review in bulk. The application is built using Gradio for an interactive web interface.
 
 ## Features
 
-- **Bulk Upload:** Upload CSV or Excel files of reviews for analysis.
-- **Model Options:** Choose from multiple sentiment analysis models:
-  - **VADER** for rule-based sentiment analysis.
-  - **SpaCy (Static Embeddings)** and **SpaCy (Contextual Embeddings)** for improved flexibility (coming soon).
-  - **Transformers** for deep learning-based sentiment analysis using pretrained models from Hugging Face.
-- **Download Results:** Export analyzed reviews with sentiment scores and labels as a CSV.
+1. **File Upload**: Upload a `.csv` or `.xlsx` file containing customer reviews. The app reads this file and prepares it for analysis. Only the first 1,000 reviews are processed to manage performance.
+2. **Sentiment Analysis Models**:
+   - **VADER**: A rule-based model particularly effective for social media text.
+   - **Transformers (DistilBERT)**: A deep learning model that provides a robust analysis.
+3. **Download Results**: After analysis, download the results as a CSV file with sentiment labels and scores.
 
-## Installation
+## Getting Started
 
-To get started, clone this repository and install the dependencies.
+### Prerequisites
+
+Make sure to have Python installed, then install the required packages using:
 
 ```bash
-git clone https://github.com/yourusername/bulk-sentiment-analysis
-cd bulk-sentiment-analysis
 pip install -r requirements.txt
 ```
 
-Ensure your environment supports GPU processing, especially for Transformer-based models, to handle large datasets more efficiently.
+### Running the Application
 
-### Dependencies
+To start the Gradio interface, run:
 
-- Python 3.7+
-- [Streamlit](https://streamlit.io/) for building the user interface
-- [Pandas](https://pandas.pydata.org/) for data handling
-- [NLTK](https://www.nltk.org/) and [VADER](https://github.com/cjhutto/vaderSentiment) for sentiment analysis
-- [SpaCy](https://spacy.io/) (optional, for static and contextual embedding-based analysis)
-- [Transformers](https://huggingface.co/transformers/) by Hugging Face for deep learning sentiment models
-
-To install these, you can run:
 ```bash
-pip install streamlit pandas nltk torch transformers spacy
+python app.py
 ```
 
-For GPU support, install the appropriate CUDA version of PyTorch, following instructions from the [official PyTorch website](https://pytorch.org/get-started/locally/).
+Once the app is running, a local link will be displayed in the terminal. Open the link in your browser to interact with the application.
 
-## Usage
+### Usage
 
-1. **Run the Application**
+1. **Upload a File**: Click "Upload your review file" and select a `.csv` or `.xlsx` file. Ensure the file has a column named `review` containing the text for sentiment analysis.
+2. **Select Model**: Use the radio buttons to choose either "VADER" or "Transformers" for sentiment analysis.
+3. **Analyze Sentiment**: After selecting a model, click "Run" to start the analysis. The results will display below.
+4. **Download Results**: Click "Download CSV" to save the output.
 
-   Launch the Streamlit app with:
-   ```bash
-   streamlit run app.py
-   ```
+## File Structure
 
-2. **Upload Your File**
+- `app.py`: Main file containing the Gradio application setup.
+- `sentiment_analysis/vader_analyzer.py`: VADER sentiment analysis implementation.
+- `sentiment_analysis/transformers_analyzer.py`: Transformers (DistilBERT) sentiment analysis implementation.
 
-   Upload a CSV or Excel file containing reviews. Make sure there is a column labeled `Review` with the text you want to analyze.
+## Example
 
-3. **Choose a Model**
+To test the application, upload a CSV file structured like:
 
-   Select one or more sentiment analysis models:
-   - **VADER** for quick, rule-based analysis.
-   - **Transformers** for more accurate, context-based sentiment detection.
+| review                                  |
+|-----------------------------------------|
+| "The product is excellent!"             |
+| "Poor quality, very disappointed."      |
+| "It was okay, not great but not terrible." |
 
-4. **Analyze and Download Results**
+After uploading, selecting a model, and clicking "Run," a sentiment label and score will be appended to each review, which you can download.
 
-   After processing, the app will display results in the UI. You can download the full results as a CSV file.
+## Requirements
 
-### Example of CSV Output
+The requirements file should include:
+```plaintext
+gradio
+pandas
+torch
+transformers
+nltk
+```
 
-The output CSV will contain the original reviews alongside new columns with sentiment scores and labels, depending on the models chosen.
+## Notes
 
-## Folder Structure
+- Ensure that your input file contains a `review` column.
+- For the Transformers model, using a GPU is recommended to improve processing speed.
+  
+## License
 
-- **`app.py`**: Main Streamlit application script.
-- **`sentiment_analysis/`**: Contains modular functions for each sentiment analysis model (e.g., `vader_analyzer.py`, `spacy_static.py`, etc.).
-- **`requirements.txt`**: List of required dependencies.
+This project is licensed under the MIT License.
 
-## Future Enhancements
+--- 
 
-- **Integrate SpaCy models** for static and contextual embedding-based sentiment analysis.
-- **Improved preprocessing** to handle non-English text and non-standard review formats.
-- **Performance optimization** with caching and batch processing for large datasets.
-
-## Contributing
-
-Feel free to open issues or submit pull requests for improvements. All contributions are welcome!
-
----
-
-This README should give users a clear understanding of what the project does, how to set it up, and how to use it. Let me know if you'd like any more specific instructions or additional sections!
+Let me know if you need any adjustments!
